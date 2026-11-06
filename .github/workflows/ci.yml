@@ -26,3 +26,5 @@ jobs:
         run: uvx ruff@0.16.10 check .
       - name: Format check (ruff)
         run: uvx ruff@0.16.10 format --check .
+      - name: Settings guard tests (pytest)
+        run: uvx --python 3.14 pytest==9.1.1 tests
