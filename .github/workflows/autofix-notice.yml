@@ -4,11 +4,13 @@ on:
     branches-ignore: [main]
 permissions:
   contents: read
-  pull-requests: write
 jobs:
   notice:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    permissions:
+      contents: read # a job block replaces the workflow grant; the job reads the event file only
+      pull-requests: write # post the notice comment on the open PR
     steps:
       - name: Mention Dusten on auto-fix commits
         env:

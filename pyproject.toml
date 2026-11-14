@@ -1,3 +1,50 @@
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14"]
+build-backend = "uv_build"
+
+[project]
+name = "bearing-register"
+version = "0.1.0"
+description = "Open-source, GRC-as-code risk register"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+  "pydantic==2.14.3",
+  "pydantic-settings==2.16.2",
+  "typer==0.28.0",
+]
+
+[project.scripts]
+brg = "bearing_register.cli:app"
+
+[dependency-groups]
+dev = [
+  "mypy==2.4.1",
+  "pip-audit==2.10.1",
+  "pytest==9.2.0",
+  "pytest-cov==7.1.0",
+  "pyyaml==6.0.3",
+  "ruff==0.17.4",
+]
+
+[tool.uv]
+# A relative window: every `uv lock` considers only releases at least 7 days old.
+exclude-newer = "7 days"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+addopts = "--cov=bearing_register --cov-report=term-missing --cov-fail-under=85"
+
+[tool.coverage.run]
+branch = true
+
+[tool.mypy]
+strict = true
+files = ["src/bearing_register"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py314"
