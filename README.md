@@ -36,6 +36,12 @@ push to `main`: `check`, `gitleaks`, `semgrep`, `pip-audit` and `zizmor`.
 `.github/rulesets/main.json` requires all five. The ruleset files are for the
 owner to apply; nothing in this repository applies them.
 
+Four more workflows and a Dependabot config run alongside CI; none is a required
+check. `pip-audit-daily.yml` audits `uv.lock` every day, `scorecard.yml` runs OpenSSF
+Scorecard on `main` and weekly, `claude-review.yml` leaves an automated review on each
+non-draft pull request, and `dependabot.yml` proposes weekly updates for `uv` and
+GitHub Actions with a 7-day cooldown.
+
 Dependencies are exact-pinned and locked in `uv.lock`. `[tool.uv] exclude-newer =
 "7 days"` makes `uv lock` ignore releases newer than seven days.
 
