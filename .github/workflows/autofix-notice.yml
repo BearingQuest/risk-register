@@ -4,8 +4,12 @@ on:
     branches-ignore: [main]
 permissions:
   contents: read
+concurrency:
+  group: autofix-notice-${{ github.ref }}
+  cancel-in-progress: false # a queued run still posts its notice
 jobs:
   notice:
+    name: notice
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
