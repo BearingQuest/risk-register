@@ -13,7 +13,12 @@ baseline 2.0. Python 3.14, managed with uv. Planning stage; not yet usable.
   - `logging_setup.py` - JSON logs on stderr with a request ID; no `print`
   - `core/` - pure domain logic: no I/O, and imports only the standard library and this package
   - `cli.py` - the Typer app; the only place typed errors become a message and an exit code
+- `docs/PRD.md` - the approved requirements, R1-R106 (v1.0); not packaged
+- `docs/design.md` - how this project uses the Bearing Quest design system; UI work follows it
+- `docs/design/` - `tokens.json`, `logos/` (8 SVGs), `screens/` (9 PNGs), `reference/bundle.css`;
+  hash-pinned in `docs/design.md`, not packaged
 - `tests/` - pytest checks
+  - `test_docs_pack.py` - keeps the PRD IDs and the design pack intact
   - `test_architecture.py` - keeps `core/` pure
   - `test_hooks.py` - the pre-push hook and the Makefile recipes
   - `test_workflows.py` - `ci.yml` and `autofix-notice.yml`
@@ -80,6 +85,8 @@ the version CI pins:
   a row to `docs/decisions.md` for each tool or library you add.
 - When you open a pull request, fill in every section of
   `.github/pull_request_template.md`, in the same order, in the PR body.
+- UI work follows `docs/design.md`.
+- Pull requests cite PRD IDs (R1-R106) in the template's Requirements line.
 
 ## Human gates: agents never do these
 

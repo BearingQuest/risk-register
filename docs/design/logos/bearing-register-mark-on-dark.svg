@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Bearing Register mark">
+<line x1="6.35" y1="33.27" x2="57.65" y2="24.73" stroke="#C85A27" stroke-width="2.75" stroke-linecap="round"></line>
+<line x1="47.78" y1="10.22" x2="22.72" y2="55.78" stroke="#C85A27" stroke-width="2.75" stroke-linecap="round"></line>
+<line x1="45.65" y1="54.18" x2="12.85" y2="13.82" stroke="#C85A27" stroke-width="2.75" stroke-linecap="round"></line>
+<circle cx="32.17" cy="32.00" r="2.75" fill="#F4F6F8"></circle></svg>
