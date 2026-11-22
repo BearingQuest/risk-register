@@ -250,6 +250,56 @@ def test_agents_md_tells_the_agent_to_run_gh_on_its_own() -> None:
     assert "Only a plain `gh` call runs outside the sandbox" in text
 
 
+def test_agents_md_says_push_without_set_upstream() -> None:
+    # The sandbox cannot write .git/config, so a push with -u fails.
+    text = " ".join((REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8").split())
+    assert "`git push origin <branch>`" in text
+
+
+def test_agents_md_says_pty_tests_skip_outside_ci() -> None:
+    # The sandbox cannot allocate a pty, so such a test must skip there (with a reason)
+    # instead of failing, and run in CI.
+    text = " ".join((REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8").split())
+    assert "pseudo-terminal (pty) skips outside CI" in text
+
+
+def test_agents_md_says_browser_scripts_are_run_by_the_owner() -> None:
+    # The sandbox cannot start Chromium on macOS, so the agent says so in the plan and
+    # the owner runs the script.
+    text = " ".join((REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8").split())
+    assert "run by the owner in a plain Terminal" in text
+
+
+def test_agents_md_says_allow_local_binding_needs_a_local_server() -> None:
+    # allowLocalBinding widens the sandbox, so AGENTS.md must say when it may be proposed.
+    text = " ".join((REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8").split())
+    assert "allowLocalBinding" in text
+
+
+def test_agents_md_flags_a_baseline_reaudit() -> None:
+    # A scope change (new package, GUI, Pages site, release workflow, AWS deploy) makes new
+    # baseline controls apply, so the plan must say a re-audit is due.
+    text = " ".join((REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8").split())
+    assert "a baseline re-audit is due" in text
+
+
+def test_agents_md_keeps_the_install_cooldown() -> None:
+    # The 7-day uv cooldown is only a guardrail if agents cannot loosen it to get a newer version.
+    text = " ".join((REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8").split())
+    assert (
+        "Keep exclude-newer as the first key under [tool.uv]; never remove or loosen it to get "
+        "a newer version. If a security fix is newer than 7 days, propose a per-package "
+        "exclude-newer-package override and a decisions row, and stop for the owner."
+    ) in text
+
+
+def test_allow_local_binding_is_not_set(settings: dict[str, Any]) -> None:
+    # sandbox.network.allowLocalBinding lets sandboxed commands listen on local ports.
+    # Absence, not "is not True": turning it on, even as false, needs a change to this
+    # test and a docs/decisions.md row, and only when the tests start a local server.
+    assert "allowLocalBinding" not in settings["sandbox"]["network"]
+
+
 def test_agents_md_keeps_the_pr_feedback_and_auto_fix_rules() -> None:
     # The auto-fix rules moved here from CLAUDE.md, which now imports AGENTS.md.
     text = " ".join((REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8").split())
