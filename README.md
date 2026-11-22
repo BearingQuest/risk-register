@@ -1,6 +1,31 @@
-# Bearing Register
+<p align="center">
+  <a href="https://bearingquest.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/readme/bearing-quest-lockup-on-dark.svg">
+      <img alt="Bearing Quest" src="docs/readme/bearing-quest-lockup-on-light.svg" width="220">
+    </picture>
+  </a>
+</p>
 
-Open-source, GRC-as-code risk register. Planning stage; not yet usable.
+<h1 align="center">Bearing Register</h1>
+
+<p align="center">
+  An open-source, GRC-as-code risk register.<br>
+  Part of the <a href="https://bearingquest.com">Bearing Quest</a> project family.
+</p>
+
+<p align="center">
+  <a href="https://github.com/BearingQuest/risk-register/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/BearingQuest/risk-register/actions/workflows/ci.yml/badge.svg?branch=main"></a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/BearingQuest/risk-register"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/BearingQuest/risk-register/badge"></a>
+  <img alt="Status: planning stage" src="https://img.shields.io/badge/status-planning_stage-7A4A00">
+  <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-1B365D"></a>
+  <img alt="Python 3.14 or newer" src="https://img.shields.io/badge/python-3.14+-1B365D">
+</p>
+
+> [!IMPORTANT]
+> Planning stage; not yet usable: `brg` only prints its version today. The approved
+> requirements are in [docs/PRD.md](docs/PRD.md) and the design in
+> [docs/design.md](docs/design.md).
 
 Requires Python 3.14 and [uv](https://docs.astral.sh/uv/).
 
