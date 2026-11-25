@@ -81,7 +81,7 @@ REQUIRED_DENY = [
 ]
 
 REQUIRED_READ_DENY = [
-    "Read(~/.ai_post_env)",
+    "Read(~/.qc_post_env)",
     "Read(~/.aws/**)",
     "Read(~/.ssh/**)",
     "Read(~/.config/gh/**)",
@@ -127,7 +127,7 @@ SANDBOX_FLAGS = {
 }
 
 SANDBOX_DENY_READ = {
-    "~/.ai_post_env",
+    "~/.qc_post_env",
     "~/.aws",
     "~/.ssh",
     "~/.config/gh",
